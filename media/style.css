@@ -3,6 +3,6 @@
     src: url("media/ModernDOS8x16.ttf");
 }
 
-body {
-    font-family: "ModernDOS8x16";
+h1 {
+    font-family: "ModernDOS8x16;
 }
