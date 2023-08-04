@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    
+<h1>How its made</h1>
+
+<p>disclaimer: this article was mainly written by an AI model. Mr Chad Jippity</p>
+
+<p>This site was the result of a small but focused project that spanned a couple of evenings. The main idea behind it was straightforward: develop a static site generator using only basic, built-in Unix utilities and markdown files.</p>
+
+<p>The content files for the project are organized in a nested directory structure, with the top level representing the year and the next level down representing the month. Each month's directory contains all the posts for that particular month.</p>
+
+<p>To create the index page, I devised a simple yet effective script. This script reads the content directory structure and automatically generates hyperlinks for each post.</p>
+
+<p>In summary, this project embodies simplicity and efficiency, utilizing minimal tools to achieve its purpose.</p>
+
+<p>Step 1: Find Markdown Files</p>
+
+<pre><code>find content -iname '*.md' |
+</code></pre>
+
+<p>Step 2: Create Hyperlinks with <code>sed</code></p>
+
+<pre><code>sed -e 's/\(.*\)\.md/\&lt;a href="\1.html"&gt;\1\&lt;\/a\&gt;/g' -e 's/content\/[0-9]\{4\}\/[0-9]\{2\}\///g' -e 's/\(.*\)\.md/\1/' &gt; public/links.html
+</code></pre>
+
+<p>Step 3: Combine HTML Files</p>
+
+<pre><code>cat partials/header.html partials/hero.html public/links.html partials/footer.html &gt; public/index.html
+</code></pre>
+
+<p>Step 4: Cleanup</p>
+
+<pre><code>rm public/links.html
+</code></pre>
+
+<p>In this project, I cleverly constructed the index page by combining generated hyperlinks markup with a generic header and footer. These partials proved to be invaluable, as I reused them while building the pages for each content file.</p>
+
+<p>Subsequently, I tackled the task of converting the content files from Markdown to HTML format. To accomplish this, I designed a straightforward script that focused on achieving three primary goals:</p>
+
+<ul>
+<li>Conversion of Markdown files to HTML format.</li>
+<li>Creation of uniform HTML files complete with header and footer content.</li>
+<li>Streamlining the elimination of unnecessary files.</li>
+</ul>
+
+<p>Now, let's delve into the script's concise steps:</p>
+
+<p>Step 1: Convert Markdown to HTML</p>
+
+<pre><code>find content -iname "*.md" -exec sh -c 'OUT=$(echo "{}" | sed "s/content\/[0-9]\{4\}\/[0-9]\{2\}\(.*\).md/public\1/"); markdown "{}" &gt; "$OUT"' {} \;
+</code></pre>
+
+<p>Step 2: Build Consistent HTML Files</p>
+
+<pre><code>find public -type f ! -name "*.*" -exec sh -c 'NAME=$(echo "{}" | sed "s/$/\.html/"); cat partials/header.html "{}" partials/footer.html &gt; "$NAME"' \;
+</code></pre>
+
+<p>Step 3: Cleanup</p>
+
+<pre><code>find public -type f ! -name "*.*" -exec sh -c 'rm "{}"' \;
+</code></pre>
+
+<p>By leveraging the power of <code>find</code>, <code>sed</code>, <code>cat</code>, and <code>rm</code> commands, our script offers an automated solution for generating organized HTML 
+files from Markdown content. This project also serves as a reminder that we don't always need to reach for hefty frameworks for simple tasks.</p>
+
+<p>Not hating on SSGs in general because I enjoy using Hugo for my other blog site but the truth is that I built this site in the same amount of
+time that it would take someone to get up to speed on a SSG framework and read some of the docs. The difference is, this was much more fun.</p>
+
+<p>Happy hacking!</p>
+</body>
+</html>
+
