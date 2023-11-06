@@ -10,7 +10,7 @@ In summary, this project embodies simplicity and efficiency, utilizing minimal t
 
 Step 1: Find Markdown Files
 
-    find content -iname '*.md' |
+    find content -iname '*.md'
 
 Step 2: Create Hyperlinks with `sed`
 
