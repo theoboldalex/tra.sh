@@ -1,7 +1,5 @@
 # How its made
 
-disclaimer: this article was mainly written by an AI model. Mr Chad Jippity
-
 This site was the result of a small but focused project that spanned a couple of evenings. The main idea behind it was straightforward: develop a static site generator using only basic, built-in Unix utilities and markdown files.
 
 The content files for the project are organized in a nested directory structure, with the top level representing the year and the next level down representing the month. Each month's directory contains all the posts for that particular month.
