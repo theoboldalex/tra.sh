@@ -1,8 +1,8 @@
 # XSH - A Bash Static Site Generator
 
 ### How?
-To build the site, simply run `make`. This will run `scripts/build.sh` and will parse the `content` directory and build html files from the markdown contained within. Conventionally, the 
-`content` directory should follow the below structure.
+To build the site, simply run `make`. This will run `scripts/build.sh` and will parse the `content` directory and build html files from the 
+markdown contained within. The `content` directory should follow the below structure.
 
 > [!WARNING]
 > If you do not follow the directory structure shown below, your site will not be built correctly
