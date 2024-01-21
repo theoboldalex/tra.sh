@@ -1,4 +1,4 @@
-# YEE.SH - A Bash Static Site Generator
+# TRA.SH - A Bash Static Site Generator
 
 ### How?
 To build the site, simply run `make`. This will run `scripts/build.sh` and will parse the `content` directory and build html files from the 
